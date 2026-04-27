@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/CSC3100 Final/styles/bootstrap.min.css">
     <title>Resume Builder</title>
 </head>
-<body class="bg-dark d-flex justify-content-center align-items-center vh-100" style="margin-top: 30vh" id="cardWelcome">
+<body class="bg-dark d-flex justify-content-center align-items-center text-center vh-100" style="margin-top: 30vh" id="cardWelcome">
     <!--Home screen card-->
     <div class="card col-12 col-md-5 p-4" id="divGetStarted">
         <h1>Welcome to Resume Builder!</h1>
@@ -16,20 +16,36 @@
         
     </div>
     
+    <!--Dashboard div container-->
     <div class="card col-12 col-md-5 p-4" style="display: none;" id="divDashboard">
-        <!--Dashboard div container-->
-        <div class="card-body align-items-center p-4">
+        <div class="card-body align-items-center text-center p-4">
             <h1>This is your Dashboard</h1>
             <div class="card-body align-items-center">
                 <p>This is your resume builder! Add your skills and job history here to begin!</p>
+                <hr />
                 <form>
                     <label class="form-label" for="txtEmail">Email</label>
                     <input class="form-control" id="txtEmail" type="email">
                 </form>
             </div>
+            <button class="btn btn-primary col-12 mt-2" id="btnHome">Home</button>
+            <button class="btn btn-success col-12 mt-2" id="btnEditor">Add more to resume.</button>
         </div>
-        
     </div>
+
+
+    <div class="card col-12 col-md-5 p-4" style="display: none;" id="divEditor">
+        <div class="card-body align-items-center text-center p-4">
+            <h1>Add Jobs, Certs, Skills, and Awards</h1>
+                <div>
+                    <p>Throw in some paragraph text here lol</p>
+                </div>
+                <button class="btn btn-primary" id="btnGoHome">Home</button>
+                <button class="btn btn-success" id="btnBackToDash">Dashboard</button>
+        </div>
+    </div>
+
+
     <script src="/CSC3100 Final/script/bootstrap.bundle.min.js"></script>
     <script src="/CSC3100 Final/script/app.js"></script>
 
