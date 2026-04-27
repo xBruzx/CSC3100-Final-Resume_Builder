@@ -6,19 +6,27 @@
 </head>
 <body class="bg-dark d-flex justify-content-center align-items-center vh-100" id="cardWelcome">
     <!--Home screen card-->
-    <div class="card col-12 col-md-5 p-4" style="margin-top: 30vh">
+    <div class="card col-12 col-md-5 p-4" style="margin-top: 30vh" id="divGetStarted">
         <h1>Welcome to Resume Builder!</h1>
         <div class="card-body align-items-center">
             <p class="text-center">Click on get started!</p>
-            <button class="btn btn-success col-12 mt-2">Get started!</button>
+            <button class="btn btn-success col-12 mt-2" id="btnGetStarted">Get started!</button>
         </div>
+
+        <!--Dashboard div container-->>
+        <div class="card-body align-items-center" style="display: none;" id="divDashboard">
+            <h1>This is your Dashboard</h1>
+            <div class="card-body align-items-center">
+                <p>This is your resume builder! Add your skills and job history here to begin!</p>
+            </div>
+        </div>
+
     </div>
     
     
-    
-    
-    
     <script src="/CSC3100 Final/script/bootstrap.bundle.min.js"></script>
+    <script src="/CSC3100 Final/script/app.js"></script>
+
 </body>
 </html>
 
