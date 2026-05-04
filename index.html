@@ -1,54 +1,299 @@
 <!DOCTYPE html>
 <html style="height: 100%">
 <head>
-    <link rel="stylesheet" href="/CSC3100 Final/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/sidebar.css">
+    <link rel="icon" type="image/x-icon" href="images/fav.ico">
     <title>Resume Builder</title>
 </head>
-<body class="bg-dark d-flex justify-content-center align-items-center text-center vh-100" style="margin-top: 30vh" id="cardWelcome">
-    <!--Home screen card-->
-    <div class="card col-12 col-md-5 p-4" id="divGetStarted">
-        <h1>Welcome to Resume Builder!</h1>
-        <div class="card-body align-items-center">
-            <p class="text-center">Click on get started!</p>
-            <button class="btn btn-success col-12 mt-2" id="btnGetStarted">Get started!</button>
+<body class="bg-dark d-flex justify-content-center align-items-center vh-100" id="bdyMain">
+
+    <!-- ===================== -->
+    <!-- WELCOME SCREEN        -->
+    <!-- ===================== -->
+    <div class="card col-12 col-md-5 p-4" id="divWelcome">
+        <div class="card-body text-center">
+            <h1 class="mb-3">Resume Builder</h1>
+            <p class="text-muted">Build and manage your resume with ease.</p>
+            <hr />
+            <p>Click below to get started.</p>
+            <button class="btn btn-success col-12 mt-2" id="btnGetStarted">Get Started</button>
+        </div>
+    </div>
+
+    <!-- ===================== -->
+    <!-- APP SHELL             -->
+    <!-- Shown after clicking  -->
+    <!-- "Get Started"         -->
+    <!-- ===================== -->
+    <div class="d-flex w-100 h-100" id="divAppShell" style="display: none !important;">
+
+        <!-- SIDEBAR -->
+        <div class="d-flex flex-column p-3 bg-dark border-end border-secondary" id="divSidebar">
+            <h5 class="text-white text-center mb-4 mt-2">Resume Builder</h5>
+            <hr class="text-secondary" />
+            <nav class="nav flex-column">
+                <button class="btn btn-dark text-start text-white nav-link mb-1" id="btnNavDashboard">Dashboard</button>
+                <button class="btn btn-dark text-start text-white nav-link mb-1" id="btnNavProfile">Profile</button>
+                <button class="btn btn-dark text-start text-white nav-link mb-1" id="btnNavJobs">Jobs</button>
+                <button class="btn btn-dark text-start text-white nav-link mb-1" id="btnNavSkills">Skills</button>
+                <button class="btn btn-dark text-start text-white nav-link mb-1" id="btnNavCerts">Certifications</button>
+                <button class="btn btn-dark text-start text-white nav-link mb-1" id="btnNavAwards">Awards</button>
+                <button class="btn btn-dark text-start text-white nav-link mb-1" id="btnNavResume">Resume Builder</button>
+                <hr class="text-secondary" />
+                <button class="btn btn-dark text-start text-white nav-link mb-1" id="btnNavSettings">Settings</button>
+            </nav>
         </div>
 
-        
-    </div>
-    
-    <!--Dashboard div container-->
-    <div class="card col-12 col-md-5 p-4" style="display: none;" id="divDashboard">
-        <div class="card-body align-items-center text-center p-4">
-            <h1>This is your Dashboard</h1>
-            <div class="card-body align-items-center">
-                <p>This is your resume builder! Add your skills and job history here to begin!</p>
+        <!-- MAIN CONTENT AREA -->
+        <div class="flex-grow-1 p-4 text-white overflow-auto" id="divMainContent">
+
+            <!-- DASHBOARD SECTION -->
+            <div id="divDashboard">
+                <h2>Dashboard</h2>
+                <p class="text-muted">Welcome back! Here is an overview of your resume.</p>
                 <hr />
-                <form>
-                    <label class="form-label" for="txtEmail">Email</label>
-                    <input class="form-control" id="txtEmail" type="email">
+
+                <!-- Stats Row -->
+                <div class="row g-3 mb-4">
+                    <div class="col-6 col-md-3">
+                        <div class="card bg-secondary text-white text-center p-3">
+                            <h3 id="lblJobCount">0</h3>
+                            <p class="mb-0">Jobs</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="card bg-secondary text-white text-center p-3">
+                            <h3 id="lblSkillCount">0</h3>
+                            <p class="mb-0">Skills</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="card bg-secondary text-white text-center p-3">
+                            <h3 id="lblCertCount">0</h3>
+                            <p class="mb-0">Certifications</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="card bg-secondary text-white text-center p-3">
+                            <h3 id="lblAwardCount">0</h3>
+                            <p class="mb-0">Awards</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <h5>Quick Actions</h5>
+                <div class="d-flex gap-2 flex-wrap">
+                    <button class="btn btn-outline-light" id="btnDashGoProfile">Edit Profile</button>
+                    <button class="btn btn-outline-light" id="btnDashGoJobs">Add a Job</button>
+                    <button class="btn btn-outline-light" id="btnDashGoSkills">Add a Skill</button>
+                    <button class="btn btn-success" id="btnDashGoResume">Build My Resume</button>
+                </div>
+            </div>
+
+            <!-- PROFILE SECTION -->
+            <div id="divProfile" style="display: none;">
+                <h2>Profile</h2>
+                <p class="text-muted">Enter your personal information below.</p>
+                <hr />
+                <form id="frmProfile">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtFirstName">First Name</label>
+                            <input class="form-control" id="txtFirstName" type="text" placeholder="John" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtLastName">Last Name</label>
+                            <input class="form-control" id="txtLastName" type="text" placeholder="Doe" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtEmail">Email</label>
+                            <input class="form-control" id="txtEmail" type="email" placeholder="john@example.com" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtPhone">Phone</label>
+                            <input class="form-control" id="txtPhone" type="tel" placeholder="555-555-5555" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtLinkedin">LinkedIn URL</label>
+                            <input class="form-control" id="txtLinkedin" type="url" placeholder="https://linkedin.com/in/yourname" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtWebsite">Website</label>
+                            <input class="form-control" id="txtWebsite" type="url" placeholder="https://yourwebsite.com" />
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" for="txtSummary">Professional Summary</label>
+                            <textarea class="form-control" id="txtSummary" rows="4" placeholder="Write a short summary about yourself..."></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-success" type="submit" id="btnSaveProfile">Save Profile</button>
+                        </div>
+                    </div>
                 </form>
             </div>
-            <button class="btn btn-primary col-12 mt-2" id="btnHome">Home</button>
-            <button class="btn btn-success col-12 mt-2" id="btnEditor">Add more to resume.</button>
+
+            <!-- JOBS SECTION -->
+            <div id="divJobs" style="display: none;">
+                <h2>Jobs</h2>
+                <p class="text-muted">Add your work experience below.</p>
+                <hr />
+                <form id="frmJobs">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtJobTitle">Job Title</label>
+                            <input class="form-control" id="txtJobTitle" type="text" placeholder="Software Engineer" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtCompany">Company</label>
+                            <input class="form-control" id="txtCompany" type="text" placeholder="Acme Corp" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtJobStartDate">Start Date</label>
+                            <input class="form-control" id="txtJobStartDate" type="text" placeholder="Jan 2022" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtJobEndDate">End Date</label>
+                            <input class="form-control" id="txtJobEndDate" type="text" placeholder="Present" />
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" for="txtJobDescription">Description</label>
+                            <textarea class="form-control" id="txtJobDescription" rows="4" placeholder="Describe your responsibilities..."></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-outline-info" type="button" id="btnJobAiSuggest">Get AI Suggestions</button>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-success" type="submit" id="btnSaveJob">Add Job</button>
+                        </div>
+                    </div>
+                </form>
+                <hr />
+                <!-- List of saved jobs will be rendered here by JS -->
+                <div id="divJobList"></div>
+            </div>
+
+            <!-- SKILLS SECTION -->
+            <div id="divSkills" style="display: none;">
+                <h2>Skills</h2>
+                <p class="text-muted">Add your skills below.</p>
+                <hr />
+                <form id="frmSkills">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtSkillName">Skill Name</label>
+                            <input class="form-control" id="txtSkillName" type="text" placeholder="JavaScript" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtSkillCategory">Category</label>
+                            <input class="form-control" id="txtSkillCategory" type="text" placeholder="Programming" />
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-outline-info" type="button" id="btnProfileAiSuggest">Get AI Suggestions</button>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-success" type="submit" id="btnSaveSkill">Add Skill</button>
+                        </div>
+                    </div>
+                </form>
+                <hr />
+                <!-- List of saved skills will be rendered here by JS -->
+                <div id="divSkillList"></div>
+            </div>
+
+            <!-- CERTIFICATIONS SECTION -->
+            <div id="divCerts" style="display: none;">
+                <h2>Certifications</h2>
+                <p class="text-muted">Add your certifications below.</p>
+                <hr />
+                <form id="frmCerts">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtCertName">Certification Name</label>
+                            <input class="form-control" id="txtCertName" type="text" placeholder="AWS Certified Developer" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtCertIssuer">Issuer</label>
+                            <input class="form-control" id="txtCertIssuer" type="text" placeholder="Amazon Web Services" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtCertDateEarned">Date Earned</label>
+                            <input class="form-control" id="txtCertDateEarned" type="text" placeholder="June 2023" />
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-success" type="submit" id="btnSaveCert">Add Certification</button>
+                        </div>
+                    </div>
+                </form>
+                <hr />
+                <!-- List of saved certs will be rendered here by JS -->
+                <div id="divCertList"></div>
+            </div>
+
+            <!-- AWARDS SECTION -->
+            <div id="divAwards" style="display: none;">
+                <h2>Awards</h2>
+                <p class="text-muted">Add your awards and achievements below.</p>
+                <hr />
+                <form id="frmAwards">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtAwardName">Award Name</label>
+                            <input class="form-control" id="txtAwardName" type="text" placeholder="Dean's List" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtAwardIssuer">Issuer</label>
+                            <input class="form-control" id="txtAwardIssuer" type="text" placeholder="University Name" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="txtAwardDateEarned">Date Earned</label>
+                            <input class="form-control" id="txtAwardDateEarned" type="text" placeholder="May 2023" />
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" for="txtAwardDescription">Description</label>
+                            <textarea class="form-control" id="txtAwardDescription" rows="3" placeholder="Describe the award..."></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-success" type="submit" id="btnSaveAward">Add Award</button>
+                        </div>
+                    </div>
+                </form>
+                <hr />
+                <!-- List of saved awards will be rendered here by JS -->
+                <div id="divAwardList"></div>
+            </div>
+
+            <!-- RESUME BUILDER SECTION -->
+            <div id="divResume" style="display: none;">
+                <h2>Resume Builder</h2>
+                <p class="text-muted">Select what to include in your resume and preview it here.</p>
+                <hr />
+                <p>Resume builder coming soon.</p>
+            </div>
+
+            <!-- SETTINGS SECTION -->
+            <div id="divSettings" style="display: none;">
+                <h2>Settings</h2>
+                <p class="text-muted">Configure your application settings.</p>
+                <hr />
+                <form id="frmSettings">
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <label class="form-label" for="txtApiKey">Gemini API Key</label>
+                            <input class="form-control" id="txtApiKey" type="password" placeholder="Enter your Gemini API key" />
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-success" type="submit" id="btnSaveSettings">Save Settings</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
         </div>
     </div>
 
-
-    <div class="card col-12 col-md-5 p-4" style="display: none;" id="divEditor">
-        <div class="card-body align-items-center text-center p-4">
-            <h1>Add Jobs, Certs, Skills, and Awards</h1>
-                <div>
-                    <p>Throw in some paragraph text here lol</p>
-                </div>
-                <button class="btn btn-primary" id="btnGoHome">Home</button>
-                <button class="btn btn-success" id="btnBackToDash">Dashboard</button>
-        </div>
-    </div>
-
-
-    <script src="/CSC3100 Final/script/bootstrap.bundle.min.js"></script>
-    <script src="/CSC3100 Final/script/app.js"></script>
-
+    <script src="script/bootstrap.bundle.min.js"></script>
+    <script src="script/app.js"></script>
 </body>
 </html>
-

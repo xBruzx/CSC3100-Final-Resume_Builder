@@ -1,0 +1,18 @@
+/* Sidebar fixed width */
+#divSidebar {
+    width: 220px;
+    min-width: 220px;
+    min-height: 100vh;
+}
+
+@media print {
+    #divSidebar {
+        display: none !important;
+    }
+    #divMainContent {
+        width: 100% !important;
+    }
+    .btn {
+        display: none !important;
+    }
+}
